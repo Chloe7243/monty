@@ -5,6 +5,13 @@ int isStack = 1, stackLength = 0;
 stack_t *head = NULL;
 char *args[2];
 
+/**
+ * process_file - processes monty bytecode file
+ * @filename: file
+ *
+ * Return: void
+ */
+
 void process_file(char *filename)
 {
 	FILE *fp;
@@ -37,13 +44,21 @@ void process_file(char *filename)
 	}
 }
 
+/**
+ * get_function - gets corresponding function for each code
+ * @name: command
+ * @line_num: where the instruction appears
+ *
+ * Return: void
+ */
+
 void get_function(char *name, int line_num)
 {
 	int i = 0;
 
 	instruction_t cmds[] = {
 		{"pall", display},
-		{"push", push_int},
+		{"push", push},
 		{"pint", pint},
 		{"swap", swap},
 		{"pop", pop},
@@ -60,12 +75,20 @@ void get_function(char *name, int line_num)
 		i++;
 	}
 
-	if (i == 7)
+	if (i == 6)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, name);
 		exit(EXIT_FAILURE);
 	}
 }
+
+/**
+ * split - splits line of code
+ * @line: line of code
+ * @line_num: where the instruction appears
+ *
+ * Return: void
+ */
 
 void split(char *line, int line_num)
 {
@@ -92,15 +115,12 @@ void split(char *line, int line_num)
 			}
 			else
 			{
-				fprintf(stderr, "L%d: usage: push\n", line_num);
+				fprintf(stderr, "L%d: usage: push integer\n", line_num);
 				exit(EXIT_FAILURE);
 			}
 		}
 		else
-		{
-			args[1] = NULL;
 			break;
-		}
 		token = strtok(NULL, " ");
 	}
 }

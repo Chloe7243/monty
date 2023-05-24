@@ -1,5 +1,12 @@
 #include "monty.h"
 
+/**
+ * main - checks program args
+ * @argc: argument count
+ * @argv: array of arguments
+ * Return: 0
+ */
+
 int main(int argc, char **argv)
 {
 	if (argc != 2)
