@@ -25,9 +25,13 @@ void process_file(char *filename)
 		while (fgets(line, sizeof(line), fp) != NULL)
 		{
 			split(line, line_num);
-			if (strcmp(args[0], "queue") == 0)
-				isStack = 0;
-			get_function(args[0], line_num);
+
+			if (args[0])
+			{
+				if (strcmp(args[0], "queue") == 0)
+					isStack = 0;
+				get_function(args[0], line_num);
+			}
 			line_num++;
 		}
 		free_stack(head);
@@ -91,29 +95,16 @@ void get_function(char *name, int line_num)
 
 void split(char *line, int line_num)
 {
-	char *token, trim[5], *text;
-	int i = 0, j, k = 0;
+	char *token;
+	int i = 0;
 
-	token = strtok(line, " ");
+	token = strtok(line, "\n\t ");
 	while (token != NULL && i < 2)
 	{
 		if (i == 0)
 		{
-			if (strcmp(token, " ") != 0)
-			{
-				text = token;
-				for (j = 0; text[j] != '\0'; j++)
-				{
-					if (isalpha(text[j]))
-					{
-						trim[k] = text[j];
-						k++;
-					}
-				}
-				trim[k] = '\0';
-				args[0] = trim;
-				i++;
-			}
+			args[0] = token;
+			i++;
 		}
 		else if (args[0] && strcmp(args[0], "push") == 0)
 		{
@@ -127,6 +118,6 @@ void split(char *line, int line_num)
 		}
 		else
 			i++;
-		token = strtok(NULL, " ");
+		token = strtok(NULL, "\n\t ");
 	}
 }
