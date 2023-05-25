@@ -17,7 +17,7 @@ void push(stack_t **stack, unsigned int __attribute__((unused)) line_number)
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -67,7 +67,7 @@ void pop(stack_t **stack, unsigned int line_number)
 
 	if (stackLength <= 0)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack", line_number);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
@@ -105,7 +105,7 @@ void add(stack_t **stack, unsigned int line_number)
 
 	if (stackLength < 2)
 	{
-		fprintf(stderr, "L%d: can't add, stack too short", line_number);
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
@@ -131,7 +131,7 @@ void swap(stack_t **stack, unsigned int line_number)
 
 	if (stackLength < 2)
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short", line_number);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
