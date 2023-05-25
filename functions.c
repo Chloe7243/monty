@@ -101,7 +101,7 @@ void split(char *line, int line_num)
 	int i = 0;
 
 	token = strtok(line, "\n\t ");
-	while (token != NULL && i < 2)
+	while (i < 2)
 	{
 		if (token == NULL)
 		{
