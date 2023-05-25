@@ -91,7 +91,7 @@ void rotl(stack_t **stack, unsigned int line_number)
 		else
 		{
 			temp->prev->next = NULL;
-			temp->next = queue->next;
+			temp->next = queue;
 			*stack = temp->prev;
 			temp->prev = NULL;
 			queue->prev = temp;
