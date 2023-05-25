@@ -62,6 +62,7 @@ void get_function(char *name, int line_num)
 
 	instruction_t cmds[] = {
 		{"pall", display},
+		{"pchar", pchar},
 		{"div", divide},
 		{"push", push},
 		{"pint", pint},
