@@ -109,13 +109,13 @@ void split(char *line, int line_num)
 		}
 		else if (args[0] && strcmp(args[0], "push") == 0)
 		{
-			if (_isdigit(token))
+			if (_isdigit(token) == 1)
+				throw_error("usage: push integer", line_num);
+			else
 			{
 				args[1] = token;
 				i++;
 			}
-			else
-				throw_error("usage: push integer", line_num);
 		}
 		else
 			i++;
