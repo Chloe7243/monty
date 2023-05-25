@@ -24,6 +24,8 @@ void process_file(char *filename)
 
 		while (fgets(line, sizeof(line), fp) != NULL)
 		{
+			args[0] = NULL;
+			args[1] = NULL;
 			split(line, line_num);
 
 			if (args[0])
