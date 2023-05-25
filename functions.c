@@ -25,7 +25,7 @@ void process_file(char *filename)
 		while (fgets(line, sizeof(line), fp) != NULL)
 		{
 			split(line, line_num);
-			if (strcmp(args[0], "queue"))
+			if (strcmp(args[0], "queue") == 0)
 				isStack = 0;
 			get_function(args[0], line_num);
 			line_num++;
@@ -54,7 +54,7 @@ void process_file(char *filename)
 
 void get_function(char *name, int line_num)
 {
-	int i = 0;
+	int i = 0, exists = 0;
 
 	instruction_t cmds[] = {
 		{"pall", display},
@@ -71,11 +71,12 @@ void get_function(char *name, int line_num)
 		if (strcmp(cmds[i].opcode, name) == 0)
 		{
 			cmds[i].f(&head, line_num);
+			exists = 1;
 		}
 		i++;
 	}
 
-	if (i == 6)
+	if (exists == 0)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, name);
 		exit(EXIT_FAILURE);
@@ -92,8 +93,8 @@ void get_function(char *name, int line_num)
 
 void split(char *line, int line_num)
 {
-	char *token;
-	int i = 0;
+	char *token, trim[5], *text;
+	int i = 0, j, k = 0;
 
 	token = strtok(line, " ");
 	while (token != NULL && i < 2)
@@ -102,13 +103,23 @@ void split(char *line, int line_num)
 		{
 			if (strcmp(token, " ") != 0)
 			{
-				args[0] = token;
+				text = token;
+				for (j = 0; text[j] != '\0'; j++)
+				{
+					if (text[j] != ' ' && text[j] != '\n' && text[j] != '\t')
+					{
+						trim[k] = text[j];
+						k++;
+					}
+				}
+				trim[k] = '\0';
+				args[0] = trim;
 				i++;
 			}
 		}
-		else if (strcmp(args[0], "push") == 0)
+		else if (args[0] && strcmp(args[0], "push") == 0)
 		{
-			if (atoi(token))
+			if (atoi(token) || strcmp(token, "0") == 0)
 			{
 				args[1] = token;
 				i++;
@@ -120,7 +131,10 @@ void split(char *line, int line_num)
 			}
 		}
 		else
-			break;
+		{
+			args[1] = "nil";
+			i++;
+		}
 		token = strtok(NULL, " ");
 	}
 }

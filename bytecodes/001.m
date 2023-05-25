@@ -2,7 +2,7 @@
 push 2 
          push 5
 push        8
-             pall
           pall tupapiesteban
+             pall
 push 6
         
