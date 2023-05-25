@@ -1,7 +1,5 @@
 #include "monty.h"
 
-stack_t *queue = NULL;
-
 /**
  * push - function that pushes an element onto top of the stack
  * @stack: pointer to the top of the stack

@@ -2,7 +2,7 @@
 #define MAX_LENGTH 256
 
 int isStack = 1, stackLength = 0;
-stack_t *head = NULL;
+stack_t *head = NULL, *queue = NULL;
 char *args[2];
 FILE *fp;
 
