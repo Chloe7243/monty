@@ -1,7 +1,5 @@
 #include "monty.h"
 
-stack_t *sTail = NULL;
-
 /**
  * push - function that pushes an element onto top of the stack
  * @stack: pointer to the top of the stack
@@ -30,18 +28,15 @@ void push(stack_t **stack, unsigned int __attribute__((unused)) line_number)
 	{
 		new->next = NULL;
 		if (*stack == NULL)
-		{
 			new->prev = NULL;
-			*stack = new;
-		}
 
 		else
 		{
-			temp = sTail;
+			temp = *stack;
 			temp->next = new;
 			new->prev = temp;
 		}
-		sTail = new;
+		*stack = new;
 	}
 	else
 	{
@@ -65,7 +60,7 @@ void push(stack_t **stack, unsigned int __attribute__((unused)) line_number)
 
 void pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = sTail;
+	stack_t *temp = *stack;
 
 	if (stackLength <= 0)
 		throw_error("can't pop an empty stack", line_number);
@@ -95,9 +90,9 @@ void pop(stack_t **stack, unsigned int line_number)
  * 2. upon fail, EXIT_FAILURE
  */
 
-void add(stack_t __attribute__((unused)) **stack, unsigned int line_number)
+void add(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = sTail;
+	stack_t *temp = *stack;
 	int sum;
 
 	if (stackLength < 2)
@@ -117,9 +112,9 @@ void add(stack_t __attribute__((unused)) **stack, unsigned int line_number)
  * 2. upon fail, EXIT_FAILURE
  */
 
-void swap(stack_t __attribute__((unused)) **stack, unsigned int line_number)
+void swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = sTail;
+	stack_t *temp = *stack;
 
 	if (stackLength < 2)
 		throw_error("can't swap, stack too short", line_number);
@@ -148,6 +143,6 @@ void display(stack_t **stack, unsigned int __attribute__((unused)) line_number)
 	while (temp)
 	{
 		printf("%d\n", temp->n);
-		temp = temp->next;
+		temp = temp->prev;
 	}
 }

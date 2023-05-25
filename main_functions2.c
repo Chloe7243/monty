@@ -10,12 +10,10 @@
  * 2. upon fail, EXIT_FAILURE
  */
 
-void pint(stack_t __attribute__((unused)) **stack, unsigned int line_number)
+void pint(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = sTail;
-
 	if (stackLength <= 0)
 		throw_error("can't pint, stack empty", line_number);
 	else
-		printf("%d\n", temp->n);
+		printf("%d\n", (*stack)->n);
 }
