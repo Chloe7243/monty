@@ -25,6 +25,7 @@ void free_stack(stack_t *head)
 void throw_error(char *msg, int lnum)
 {
 	fclose(fp);
+	free_stack(head);
 	fprintf(stderr, "L%d: %s\n", lnum, msg);
 	exit(EXIT_FAILURE);
 }
