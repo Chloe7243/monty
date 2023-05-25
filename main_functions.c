@@ -58,14 +58,17 @@ void push(stack_t **stack, unsigned int __attribute__((unused)) line_number)
 
 void pop(stack_t **stack, unsigned int line_number)
 {
+	stack_t *ptr = *stack;
+
 	if (stackLength <= 0)
 		throw_error("can't pop an empty stack", line_number);
 
 	else if (isStack)
 	{
-		if ((*stack)->prev)
-			(*stack)->prev->next = NULL;
-		*stack = (*stack)->prev;
+		*stack = ptr->prev;
+		if (*stack)
+			(*stack)->next = NULL;
+		free(ptr);
 	}
 	else
 	{
