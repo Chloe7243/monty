@@ -70,7 +70,7 @@ void mod(stack_t **stack, unsigned int line_number)
 	stack_t *temp = *stack;
 
 	if (stackLength < 2)
-		throw_error("can't sub, stack too short", line_number);
+		throw_error("can't mod, stack too short", line_number);
 	if (temp->n == 0)
 		throw_error("division by zero", line_number);
 
