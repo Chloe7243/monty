@@ -1,5 +1,5 @@
 #include "monty.h"
-#define MAX_LENGTH 256
+#define MAX_LENGTH 1024
 
 int isStack = 1, stackLength = 0;
 stack_t *head = NULL;
