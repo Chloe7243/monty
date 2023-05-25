@@ -113,10 +113,8 @@ void rotr(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 
-	if (stackLength > 1)
+	if (stackLength > 2)
 	{
-		if (stackLength == 2)
-			swap(stack, line_number);
 		else
 		{
 			queue->next->prev = NULL;
