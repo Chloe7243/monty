@@ -16,5 +16,6 @@ void pint(stack_t __attribute__((unused)) **stack, unsigned int line_number)
 
 	if (stackLength <= 0)
 		throw_error("can't pint, stack empty", line_number);
-	printf("%d\n", temp->n);
+	else
+		printf("%d\n", temp->n);
 }
