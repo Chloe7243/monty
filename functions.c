@@ -109,7 +109,7 @@ void split(char *line, int line_num)
 		}
 		else if (args[0] && strcmp(args[0], "push") == 0)
 		{
-			if (token[0] == '-' ? isdigit(token[1]) : isdigit(token[0]))
+			if (_isdigit(token))
 			{
 				args[1] = token;
 				i++;

@@ -65,5 +65,6 @@ void free_stack(stack_t *stack);
 void split(char *line, int line_num);
 void throw_error(char *msg, int lnum);
 void get_function(char *name, int line_num);
+int _isdigit(char *str);
 
 #endif
