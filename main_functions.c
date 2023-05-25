@@ -68,6 +68,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	*stack = ptr->prev;
 	if (*stack)
 		(*stack)->next = NULL;
+	free(ptr);
 	stackLength--;
 }
 
@@ -119,7 +120,6 @@ void swap(stack_t **stack, unsigned int line_number)
 	ptr->next = ptr2;
 	ptr2->next = NULL;
 	*stack = ptr2;
-
 }
 
 /**

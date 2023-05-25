@@ -1,16 +1,23 @@
+push 71
+push 72
+push 73
+push 74
+push 75
+push 76
+push 77
+push 78
+push 79
+pall
+rotl
+pall
+rotl
+pall
+rotr
+pall
 queue
-push 1
-push 2
-push 3
+pop
 pall
-stack
-push 4
-push 5
-push 6
+swap
 pall
-add
-pall
-queue
-push 11111
-add
-pall
+pchar
+pstr
