@@ -100,8 +100,15 @@ void split(char *line, int line_num)
 	int i = 0;
 
 	token = strtok(line, "\n\t ");
-	while (token != NULL && i < 2)
+	while (i < 2)
 	{
+		if (token == NULL)
+		{
+			if (args[0] && strcmp(args[0], "push") == 0)
+				throw_error("usage: push integer", line_num);
+			else
+				break;
+		}
 		if (i == 0)
 		{
 			args[0] = token;

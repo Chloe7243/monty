@@ -41,20 +41,14 @@ void throw_error(char *msg, int lnum)
 
 int _isdigit(char *str)
 {
-
 	int i = 0;
 
-
 	if (str[i] == '-')
-	{
 		i++;
-	}
 	while (str[i] != '\0')
 	{
 		if (!isdigit(str[i]))
-		{
 			return (1);
-		}
 		i++;
 	}
 
