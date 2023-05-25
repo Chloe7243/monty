@@ -1,5 +1,7 @@
 #include "monty.h"
 
+stack_t *sTail = NULL;
+
 /**
  * push - function that pushes an element onto top of the stack
  * @stack: pointer to the top of the stack
@@ -17,6 +19,8 @@ void push(stack_t **stack, unsigned int __attribute__((unused)) line_number)
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
+		fclose(fp); 
+		free_stack(*stack);
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
@@ -33,13 +37,11 @@ void push(stack_t **stack, unsigned int __attribute__((unused)) line_number)
 
 		else
 		{
-			temp = *stack;
-			while (temp->next)
-				temp = temp->next;
-
+			temp = sTail;
 			temp->next = new;
 			new->prev = temp;
 		}
+		sTail = new;
 	}
 	else
 	{
@@ -63,18 +65,13 @@ void push(stack_t **stack, unsigned int __attribute__((unused)) line_number)
 
 void pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack;
+	stack_t *temp = sTail;
 
 	if (stackLength <= 0)
-	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+		throw_error("can't pop an empty stack", line_number);
 
 	if (isStack)
 	{
-		while (temp->next)
-			temp = temp->next;
 		temp->prev->next = temp->next;
 		free(temp);
 	}
@@ -98,19 +95,14 @@ void pop(stack_t **stack, unsigned int line_number)
  * 2. upon fail, EXIT_FAILURE
  */
 
-void add(stack_t **stack, unsigned int line_number)
+void add(stack_t __attribute__((unused)) **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack;
+	stack_t *temp = sTail;
 	int sum;
 
 	if (stackLength < 2)
-	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+		throw_error("can't add, stack too short", line_number);
 
-	while (temp->next)
-		temp = temp->next;
 	sum = temp->prev->n + temp->n;
 	printf("%d\n", sum);
 }
@@ -125,18 +117,13 @@ void add(stack_t **stack, unsigned int line_number)
  * 2. upon fail, EXIT_FAILURE
  */
 
-void swap(stack_t **stack, unsigned int line_number)
+void swap(stack_t __attribute__((unused)) **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack;
+	stack_t *temp = sTail;
 
 	if (stackLength < 2)
-	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+		throw_error("can't swap, stack too short", line_number);
 
-	while (temp->next)
-		temp = temp->next;
 	temp->prev->prev->next = temp;
 	temp->prev->next = temp->next;
 	temp->prev->prev = temp;

@@ -1,3 +1,4 @@
+pall
 pint
 push    7$
 push 2 

@@ -42,6 +42,8 @@ typedef struct instruction_s
 extern int isStack, stackLength;
 extern char *args[2];
 extern stack_t *head;
+extern stack_t *sTail;
+extern FILE *fp;
 
 void push(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
@@ -59,7 +61,9 @@ void pstr(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, unsigned int line_number);
 void rotr(stack_t **stack, unsigned int line_number);
 void process_file(char *filename);
+void free_stack(stack_t *head);
 void split(char *line, int line_num);
+void throw_error(char *msg, int lnum);
 void get_function(char *name, int line_num);
 
 #endif

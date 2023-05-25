@@ -4,6 +4,7 @@
 int isStack = 1, stackLength = 0;
 stack_t *head = NULL;
 char *args[2];
+FILE *fp;
 
 /**
  * process_file - processes monty bytecode file
@@ -14,7 +15,6 @@ char *args[2];
 
 void process_file(char *filename)
 {
-	FILE *fp;
 	int line_num = 1;
 	char line[MAX_LENGTH];
 
@@ -30,16 +30,12 @@ void process_file(char *filename)
 			get_function(args[0], line_num);
 			line_num++;
 		}
+		free_stack(head);
+		fclose(fp); 
 	}
 	else
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
-		exit(EXIT_FAILURE);
-	}
-
-	if (fclose(fp) == EOF)
-	{
-		fprintf(stderr, "Error: Can't close file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -78,6 +74,7 @@ void get_function(char *name, int line_num)
 
 	if (exists == 0)
 	{
+		fclose(fp); 
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, name);
 		exit(EXIT_FAILURE);
 	}
@@ -125,16 +122,10 @@ void split(char *line, int line_num)
 				i++;
 			}
 			else
-			{
-				fprintf(stderr, "L%d: usage: push integer\n", line_num);
-				exit(EXIT_FAILURE);
-			}
+				throw_error("usage: push integer", line_num);
 		}
 		else
-		{
-			args[1] = "nil";
 			i++;
-		}
 		token = strtok(NULL, " ");
 	}
 }
