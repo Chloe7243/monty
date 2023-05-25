@@ -19,6 +19,7 @@ void push(stack_t **stack, unsigned int __attribute__((unused)) line_number)
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
+		free(new);
 		free_stack(*stack);
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
