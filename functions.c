@@ -1,5 +1,5 @@
 #include "monty.h"
-#define MAX_LENGTH 1024
+#define MAX_LENGTH 256
 
 int isStack = 1, stackLength = 0;
 stack_t *head = NULL;
@@ -125,7 +125,7 @@ void split(char *line, int line_num)
 			}
 		}
 		else
-			break;
+			i++;
 		token = strtok(NULL, "\n\t ");
 	}
 }
