@@ -1,5 +1,7 @@
 #include "monty.h"
 
+stack_t *sTail;
+
 /**
  * push - function that pushes an element onto top of the stack
  * @stack: pointer to the top of the stack
@@ -28,7 +30,10 @@ void push(stack_t **stack, unsigned int __attribute__((unused)) line_number)
 	{
 		new->next = NULL;
 		if (*stack == NULL)
+		{
+			sTail = new;
 			new->prev = NULL;
+		}
 
 		else
 		{
@@ -111,16 +116,22 @@ void add(stack_t **stack, unsigned int line_number)
 
 void swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack;
+	stack_t *ptr = *stack, *ptr2;
 
 	if (stackLength < 2)
 		throw_error("can't swap, stack too short", line_number);
 
-	temp->prev->prev->next = temp;
-	temp->prev->next = temp->next;
-	temp->prev->prev = temp;
-	temp->next = temp->prev;
-	temp->prev = temp->prev->prev;
+	ptr2 = ptr->prev;
+
+	if (ptr2->prev)
+		ptr2->prev->next = ptr;
+
+	ptr->prev = ptr2->prev;
+	ptr2->prev = ptr;
+	ptr->next = ptr2;
+	ptr2->next = NULL;
+	*stack = ptr2;
+
 }
 
 /**
