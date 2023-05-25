@@ -103,7 +103,7 @@ void split(char *line, int line_num)
 				text = token;
 				for (j = 0; text[j] != '\0'; j++)
 				{
-					if (text[j] != ' ' && text[j] != '\n' && text[j] != '\t')
+					if (isalpha(text[j]))
 					{
 						trim[k] = text[j];
 						k++;
