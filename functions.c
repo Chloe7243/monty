@@ -28,7 +28,7 @@ void process_file(char *filename)
 			args[1] = NULL;
 			split(line, line_num);
 
-			if (args[0][0] == '#')
+			if (args[0] && args[0][0] == '#')
 				continue;
 			if (args[0])
 			{
