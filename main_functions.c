@@ -1,6 +1,6 @@
 #include "monty.h"
 
-stack_t *sTail;
+stack_t *queue;
 
 /**
  * push - function that pushes an element onto top of the stack
@@ -14,7 +14,7 @@ stack_t *sTail;
 
 void push(stack_t **stack, unsigned int __attribute__((unused)) line_number)
 {
-	stack_t *new, *temp;
+	stack_t *new;
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
@@ -29,26 +29,20 @@ void push(stack_t **stack, unsigned int __attribute__((unused)) line_number)
 	if (isStack)
 	{
 		new->next = NULL;
-		if (*stack == NULL)
-		{
-			sTail = new;
-			new->prev = NULL;
-		}
-
+		new->prev = *stack;
+		if (*stack)
+			(*stack)->next = new;
 		else
-		{
-			temp = *stack;
-			temp->next = new;
-			new->prev = temp;
-		}
+			queue = new;
 		*stack = new;
 	}
 	else
 	{
-		new->next = (*stack);
-		if (*stack != NULL)
-			(*stack)->prev = new;
-		(*stack) = new;
+		new->next = (queue);
+		new->prev = NULL;
+		if (queue)
+			(queue)->prev = new;
+		(queue) = new;
 	}
 	stackLength++;
 }

@@ -42,7 +42,7 @@ typedef struct instruction_s
 extern int isStack, stackLength;
 extern char *args[2];
 extern stack_t *head;
-extern stack_t *sTail;
+extern stack_t *queue;
 extern FILE *fp;
 
 void push(stack_t **stack, unsigned int line_number);
