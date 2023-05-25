@@ -71,3 +71,32 @@ void pstr(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 		printf("\n");
 	}
 }
+
+/**
+ * rotl - moves last element to the back
+ * @stack: pointer to the top of the stack
+ * @line_number: where the line number appears
+ * Description: 4. add
+ * Return: see below
+ * 1. upon success, nothing
+ * 2. upon fail, EXIT_FAILURE
+ */
+
+void rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp = *stack;
+
+	if (stackLength > 1)
+	{
+		if (stackLength == 2)
+			swap(stack, line_number);
+		else
+		{
+			temp->prev->next = NULL;
+			temp->next = queue->next;
+			*stack = temp->prev;
+			temp->prev = NULL;
+			queue->prev = temp;
+		}
+	}
+}
