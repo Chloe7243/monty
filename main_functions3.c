@@ -111,7 +111,7 @@ void rotl(stack_t **stack, unsigned int line_number)
 
 void rotr(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack, *temp2 = queue;
+	stack_t *temp = *stack;
 
 	if (stackLength > 1)
 	{
@@ -124,7 +124,6 @@ void rotr(stack_t **stack, unsigned int line_number)
 			queue->next = NULL;
 			temp->next = queue;
 			*stack = queue;
-			queue = temp2->next;
 		}
 	}
 }
