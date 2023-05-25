@@ -106,8 +106,6 @@ void split(char *line, int line_num)
 		{
 			if (args[0] && strcmp(args[0], "push") == 0)
 				throw_error("usage: push integer", line_num);
-			else
-				break;
 		}
 		if (i == 0)
 		{
