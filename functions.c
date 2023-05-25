@@ -123,7 +123,7 @@ void split(char *line, int line_num)
 			}
 		}
 		else
-			i++;
+			break;
 		token = strtok(NULL, "\n\t ");
 	}
 }
