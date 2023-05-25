@@ -31,7 +31,7 @@ void process_file(char *filename)
 			line_num++;
 		}
 		free_stack(head);
-		fclose(fp); 
+		fclose(fp);
 	}
 	else
 	{
@@ -74,7 +74,7 @@ void get_function(char *name, int line_num)
 
 	if (exists == 0)
 	{
-		fclose(fp); 
+		fclose(fp);
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, name);
 		exit(EXIT_FAILURE);
 	}
