@@ -28,7 +28,8 @@ void pint(stack_t **stack, unsigned int line_number)
  * 2. upon fail, EXIT_FAILURE
  */
 
-void nop(stack_t __attribute__((unused)) **stack, unsigned int __attribute__((unused)) line_number)
+void nop(stack_t **stack, unsigned int line_number)
 {
-	exit(EXIT_SUCCESS);
+	(void) stack;
+	(void) line_number;
 }
