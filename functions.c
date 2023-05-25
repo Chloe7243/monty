@@ -57,12 +57,13 @@ void get_function(char *name, int line_num)
 		{"push", push},
 		{"pint", pint},
 		{"swap", swap},
-		{"pop", pop},
 		{"add", add},
+		{"pop", pop},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 
-	while (i < 6)
+	while (i < 7)
 	{
 		if (strcmp(cmds[i].opcode, name) == 0)
 		{

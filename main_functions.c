@@ -91,13 +91,12 @@ void pop(stack_t **stack, unsigned int line_number)
 void add(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
-	int sum;
 
 	if (stackLength < 2)
 		throw_error("can't add, stack too short", line_number);
 
-	sum = temp->prev->n + temp->n;
-	printf("%d\n", sum);
+	temp->prev->n += temp->n;
+	pop(stack, line_number);
 }
 
 /**
