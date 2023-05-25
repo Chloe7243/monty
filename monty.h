@@ -61,7 +61,7 @@ void pstr(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, unsigned int line_number);
 void rotr(stack_t **stack, unsigned int line_number);
 void process_file(char *filename);
-void free_stack(stack_t *head);
+void free_stack(stack_t *stack);
 void split(char *line, int line_num);
 void throw_error(char *msg, int lnum);
 void get_function(char *name, int line_num);

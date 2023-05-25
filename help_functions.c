@@ -2,16 +2,16 @@
 
 /**
  * free_stack - frees list
- * @head: head pointer
+ * @stack: head pointer
  * Return: void
  */
 
-void free_stack(stack_t *head)
+void free_stack(stack_t *stack)
 {
-	while (head)
+	while (stack)
 	{
-		free(head);
-		head = head->next;
+		free(stack);
+		stack = stack->prev;
 	}
 }
 
@@ -24,8 +24,8 @@ void free_stack(stack_t *head)
 
 void throw_error(char *msg, int lnum)
 {
-	fclose(fp);
 	free_stack(head);
+	fclose(fp);
 	fprintf(stderr, "L%d: %s\n", lnum, msg);
 	exit(EXIT_FAILURE);
 }

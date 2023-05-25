@@ -79,6 +79,7 @@ void get_function(char *name, int line_num)
 
 	if (exists == 0)
 	{
+		free_stack(head);
 		fclose(fp);
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, name);
 		exit(EXIT_FAILURE);
