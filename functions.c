@@ -56,7 +56,7 @@ void process_file(char *filename)
 
 void get_function(char *name, int line_num)
 {
-	int i = 0, exists = 0;
+	int i, exists = 0;
 
 	instruction_t cmds[] = {
 		{"pall", display},
@@ -69,14 +69,13 @@ void get_function(char *name, int line_num)
 		{NULL, NULL}
 	};
 
-	while (i < 7)
+	for (i = 0; cmds[i].opcode != NULL; i++)
 	{
 		if (strcmp(cmds[i].opcode, name) == 0)
 		{
 			cmds[i].f(&head, line_num);
 			exists = 1;
 		}
-		i++;
 	}
 
 	if (exists == 0)
@@ -102,7 +101,7 @@ void split(char *line, int line_num)
 	int i = 0;
 
 	token = strtok(line, "\n\t ");
-	while (i < 2)
+	while (token != NULL && i < 2)
 	{
 		if (token == NULL)
 		{
@@ -116,7 +115,7 @@ void split(char *line, int line_num)
 		}
 		else if (args[0] && strcmp(args[0], "push") == 0)
 		{
-			if (token[0] == '-' ? !isdigit(token[1]) : !isdigit(token[0]))
+			if (_isdigit(token) == 1)
 				throw_error("usage: push integer", line_num);
 			else
 			{
