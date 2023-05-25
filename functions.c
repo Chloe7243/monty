@@ -60,12 +60,16 @@ void get_function(char *name, int line_num)
 
 	instruction_t cmds[] = {
 		{"pall", display},
+		{"div", divide},
 		{"push", push},
 		{"pint", pint},
 		{"swap", swap},
 		{"add", add},
 		{"pop", pop},
 		{"nop", nop},
+		{"sub", sub},
+		{"mul", mul},
+		{"mod", mod},
 		{NULL, NULL}
 	};
 
