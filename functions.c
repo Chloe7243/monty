@@ -33,7 +33,15 @@ void process_file(char *filename)
 			if (args[0])
 			{
 				if (strcmp(args[0], "queue") == 0)
+				{
 					isStack = 0;
+					continue;
+				}
+				else if (strcmp(args[0], "stack") == 0)
+				{
+					isStack = 1;
+					continue;
+				}
 				get_function(args[0], line_num);
 			}
 			line_num++;

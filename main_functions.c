@@ -1,6 +1,6 @@
 #include "monty.h"
 
-stack_t *queue;
+stack_t *queue = NULL;
 
 /**
  * push - function that pushes an element onto top of the stack
@@ -41,7 +41,9 @@ void push(stack_t **stack, unsigned int __attribute__((unused)) line_number)
 		new->prev = NULL;
 		if (queue)
 			(queue)->prev = new;
-		(queue) = new;
+		else
+			*stack = new;
+		queue = new;
 	}
 	stackLength++;
 }
@@ -63,19 +65,9 @@ void pop(stack_t **stack, unsigned int line_number)
 	if (stackLength <= 0)
 		throw_error("can't pop an empty stack", line_number);
 
-	else if (isStack)
-	{
-		*stack = ptr->prev;
-		if (*stack)
-			(*stack)->next = NULL;
-		free(ptr);
-	}
-	else
-	{
-		*stack = (*stack)->next;
-		if (*stack)
-			(*stack)->prev = NULL;
-	}
+	*stack = ptr->prev;
+	if (*stack)
+		(*stack)->next = NULL;
 	stackLength--;
 }
 
