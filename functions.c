@@ -68,6 +68,7 @@ void get_function(char *name, int line_num)
 		{"pint", pint},
 		{"pstr", pstr},
 		{"rotl", rotl},
+		{"rotr", rotr},
 		{"swap", swap},
 		{"add", add},
 		{"pop", pop},

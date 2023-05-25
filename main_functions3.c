@@ -52,7 +52,6 @@ void pchar(stack_t **stack, unsigned int line_number)
  * Description: 4. add
  * Return: see below
  * 1. upon success, nothing
- * 2. upon fail, EXIT_FAILURE
  */
 
 void pstr(stack_t **stack, __attribute__((unused)) unsigned int line_number)
@@ -73,13 +72,12 @@ void pstr(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 }
 
 /**
- * rotl - moves last element to the back
+ * rotl - moves top element to the back
  * @stack: pointer to the top of the stack
  * @line_number: where the line number appears
  * Description: 4. add
  * Return: see below
  * 1. upon success, nothing
- * 2. upon fail, EXIT_FAILURE
  */
 
 void rotl(stack_t **stack, unsigned int line_number)
@@ -97,6 +95,36 @@ void rotl(stack_t **stack, unsigned int line_number)
 			*stack = temp->prev;
 			temp->prev = NULL;
 			queue->prev = temp;
+			queue = temp;
+		}
+	}
+}
+
+/**
+ * rotr - moves last element to the top
+ * @stack: pointer to the top of the stack
+ * @line_number: where the line number appears
+ * Description: 4. add
+ * Return: see below
+ * 1. upon success, nothing
+ */
+
+void rotr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp = *stack, *temp2 = queue;
+
+	if (stackLength > 1)
+	{
+		if (stackLength == 2)
+			swap(stack, line_number);
+		else
+		{
+			queue->next->prev = NULL;
+			queue->prev = temp;
+			queue->next = NULL;
+			temp->next = queue;
+			*stack = queue;
+			queue = temp2->next;
 		}
 	}
 }
