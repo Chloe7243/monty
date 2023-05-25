@@ -35,12 +35,39 @@ void divide(stack_t **stack, unsigned int line_number)
 
 void pchar(stack_t **stack, unsigned int line_number)
 {
-        stack_t *temp = *stack;
+	stack_t *temp = *stack;
 
-        if (stackLength == 0)
-                throw_error("can't pchar, stack empty", line_number);
-        if (temp->n > 127 || temp->n < 0)
-                throw_error("can't pchar, value out of range", line_number);
+	if (stackLength == 0)
+		throw_error("can't pchar, stack empty", line_number);
+	if (temp->n > 127 || temp->n < 0)
+		throw_error("can't pchar, value out of range", line_number);
 
 	printf("%c\n", temp->n);
+}
+
+/**
+ * pstr - prints all elements in stack as chars
+ * @stack: pointer to the top of the stack
+ * @line_number: where the line number appears
+ * Description: 4. add
+ * Return: see below
+ * 1. upon success, nothing
+ * 2. upon fail, EXIT_FAILURE
+ */
+
+void pstr(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+{
+	stack_t *temp = *stack;
+
+	if (!temp)
+		printf("\n");
+	else
+	{
+		while (temp && temp->n <= 127 && temp->n >= 1)
+		{
+			printf("%c", temp->n);
+			temp = temp->prev;
+		}
+		printf("\n");
+	}
 }

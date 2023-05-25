@@ -65,6 +65,7 @@ void get_function(char *name, int line_num)
 		{"pchar", pchar},
 		{"div", divide},
 		{"push", push},
+		{"pstr", pstr},
 		{"pint", pint},
 		{"swap", swap},
 		{"add", add},
