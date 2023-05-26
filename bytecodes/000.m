@@ -1,14 +1,12 @@
 queue
 push 1
 push 2
-queue
 push 3
 pall
+stack
 push 4
 push 5
-queue
 push 6
-add
 pall
 add
 pall
